@@ -1,51 +1,51 @@
-snippet begin "Begin command block" !b
+snippet begin "Begin command block" b
 begin
 	$1
 end
 endsnippet
 
-snippet fun "Function definition" !b
+snippet fun "Function definition" b
 function ${1:name}
 	$2
 end
 endsnippet
 
-snippet if "If statement" !b
+snippet if "If statement" b
 if ${1:condition}
 	$2
 end
 endsnippet
 
-snippet test "If test" !b
+snippet test "If test" b
 if test ${1:expression}
 	$2
 end
 endsnippet
 
-snippet elif "Else-if branch" !b
+snippet elif "Else-if branch" b
 else if ${condition}
 	$2
 endsnippet
 
-snippet switch "Switch statement" !b
+snippet switch "Switch statement" b
 switch ${1:value}
 	case ${2:matches}
 		$3
 end
 endsnippet
 
-snippet default "Match any case" !b
+snippet default "Match any case" b
 case '*'
 	$1
 endsnippet
 
-snippet for "For loop" !b
+snippet for "For loop" b
 for ${1:var}  in ${2:values}
 	$3
 end
 endsnippet
 
-snippet while "While loop" !b
+snippet while "While loop" b
 while ${1:condition}
 	$2
 end
