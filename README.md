@@ -5,9 +5,12 @@ This is an addon for Vim providing filetype support for [fish][] scripts.  In
 addition to the normal Vim features such as syntax highlighting, automatic
 indentation and filetype detection, this addon includes support for the
 third-party addons [UltiSnips][], [Syntastic][], [endwise][] and [commentary][]
-when any of those are installed.  Bonus feature: if you use Vim with `funced`
-in fish the cursor will be placed inside the function and Vim will enter Insert
-mode.
+when any of those are installed.
+
+Bonus feature: if you use Vim with `funced` in fish, Vim will enter Insert mode
+at the end of the last line inside the function, after indenting it once if
+it's empty.  This means you can instantly start typing the body of new
+functions, and quickly add new statements to existing functions.
 
 [fish]: https://github.com/fish-shell/fish-shell
 [UltiSnips]: https://github.com/SirVer/ultisnips
