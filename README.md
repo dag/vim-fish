@@ -25,7 +25,12 @@ use fish as your login shell or launch Vim from fish, you need to set `shell`
 to something else in your `~/.vimrc`, for example:
 
 ```vim
-set shell=/bin/sh
+if &shell =~# 'fish$'
+    set shell=sh
+endif
 ```
 
 Best do it somewhere at the top, before any addon code is loaded and executed.
+
+Note that this also affects what `:sh[ell]` launches, so if you care about that
+you might want to set it to your second best shell instead.
