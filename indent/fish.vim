@@ -12,19 +12,23 @@ function GetFishIndent()
         return 0
     endif
 
-    let l:ind = indent(l:lnum)
+    let l:ind = 0
 
     if getline(l:lnum) =~# '\v^\s*switch>'
-        let l:ind = l:ind + &shiftwidth * 2
+        let l:ind = &shiftwidth * 2
     elseif getline(l:lnum) =~# '\v^\s*%(begin|if|else|while|for|function|case)>'
-        let l:ind = l:ind + &shiftwidth
+        let l:ind = &shiftwidth
     endif
 
-    if getline(v:lnum) =~# '\v^\s*case>'
-        let l:ind = l:ind - &shiftwidth
-    elseif getline(v:lnum) =~# '\v^\s*%(end|else)>'
-        let l:ind = indent(l:lnum)
+    if getline(v:lnum) =~# '\v^\s*end>'
+        if l:ind ==# 0
+            return indent(v:lnum) - &shiftwidth
+        else
+            return indent(v:lnum) - l:ind
+        endif
+    elseif getline(v:lnum) =~# '\v^\s*%(case|else)>'
+        return indent(v:lnum) - &shiftwidth
     endif
 
-    return l:ind
+    return indent(l:lnum) + l:ind
 endfunction
