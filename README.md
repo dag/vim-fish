@@ -36,4 +36,6 @@ endif
 Best do it somewhere at the top, before any addon code is loaded and executed.
 
 Note that this also affects what `:sh[ell]` launches, so if you care about that
-you might want to set it to your second best shell instead.
+you might want to set it to your second best shell instead.  If you use Vim in
+the terminal you could also train yourself to use `:st[op]` or CTRL-Z instead
+and use `fg` in fish to get back to Vim.
