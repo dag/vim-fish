@@ -23,23 +23,20 @@ endfunction
 
 function! fish#Complete(findstart, base)
     if a:findstart
-        if getline('.') =~# '\v^\s*$'
-            return -1
-        else
-            return 0
-        endif
+        return getline('.') =~# '\v^\s*$' ? -1 : 0
     else
+        if a:base ==# ''
+            return []
+        endif
         let l:results = []
-        let l:completions = system('fish -c "complete -C'.shellescape(a:base).'"')
+        let l:completions =
+                    \ system('fish -c "complete -C'.shellescape(a:base).'"')
         let l:cmd = substitute(a:base, '\v\S+$', '', '')
         for l:line in split(l:completions, '\n')
             let l:tokens = split(l:line, '\t')
-            let l:completion = l:cmd.l:tokens[0]
-            let l:item = {'word': l:completion, 'abbr': l:tokens[0]}
-            if len(l:tokens) ==# 2
-                let l:item['menu'] = l:tokens[1]
-            endif
-            call add(l:results, l:item)
+            call add(l:results, {'word': l:cmd.l:tokens[0],
+                                \'abbr': l:tokens[0],
+                                \'menu': get(l:tokens, 1, '')})
         endfor
         return l:results
     endif
