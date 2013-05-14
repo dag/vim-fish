@@ -1,27 +1,47 @@
 vim-fish
 ========
 
-This is an addon for Vim providing filetype support for [fish][] scripts.  In
-addition to the normal Vim features such as syntax highlighting, automatic
-indentation, reformatting, keyword lookup, omni completion and filetype
-detection, this addon includes support for the third-party addons
-[UltiSnips][], [Syntastic][], [endwise][] and [commentary][] as well as the
-standard *matchit* addon when any of those are installed.
-
-Bonus feature: if you use Vim with `funced` in fish, Vim will enter Insert mode
-at the end of the last line inside the function, after indenting it once if
-it's empty.  This means you can instantly start typing the body of new
-functions, and quickly add new statements to existing functions.
+This is an addon for Vim providing support for editing [fish][] scripts.
 
 [fish]: https://github.com/fish-shell/fish-shell
+
+Features aplenty
+----------------
+
+* Syntax highlighting if you have `:syntax enable`.
+* Filetype detection if you have `:filetype on`.
+* Automatic indentation based on keywords for control structures if you have
+  `:filetype indent on`.
+* Code formatting with `fish_indent` using the `gq` operator if you have
+  `:filetype plugin on`.
+* Keyword lookup that includes pages for fish builtins using the `K` command if
+  you have `:filetype plugin on`.
+* Completions from fish using the `^X^O` command if you have `:filetype plugin
+  on`.
+* Improved `funced` experience to instantly start typing commands in the
+  function body if you have `:filetype on`.
+
+A team player
+-------------
+
+*vim-fish* ships with:
+
+* Code snippets for [UltiSnips][]
+* A syntax checker for [Syntastic][]
+* Insertion rules for [endwise][]
+* Configuration for [commentary][]
+* Patterns for [matchit][]
+
+But you don't have to install any of those to use this addon.
+
 [UltiSnips]: https://github.com/SirVer/ultisnips
 [Syntastic]: https://github.com/scrooloose/syntastic
 [endwise]: https://github.com/tpope/vim-endwise
 [commentary]: https://github.com/tpope/vim-commentary
+[matchit]: http://www.vim.org/scripts/script.php?script_id=39
 
-
-Using fish with Vim
--------------------
+Teach a Vim to fish…
+--------------------
 
 Vim needs a more POSIX compatible shell than fish for certain functionality to
 work, such as `:%!`, compressed help pages and many third-party addons.  If you
