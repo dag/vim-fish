@@ -31,7 +31,7 @@ function! fish#Complete(findstart, base)
     else
         let l:results = []
         let l:completions = system('fish -c "complete -C'.shellescape(a:base).'"')
-        let l:cmd = substitute(a:base, '\v<\S*$', '', '')
+        let l:cmd = substitute(a:base, '\v\S+$', '', '')
         for l:line in split(l:completions, '\n')
             let l:tokens = split(l:line, '\t')
             let l:completion = l:cmd.l:tokens[0]
