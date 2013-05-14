@@ -1,6 +1,7 @@
 setlocal commentstring=#%s
 setlocal iskeyword=@,48-57,-,_,.,/
 setlocal formatprg=fish_indent
+setlocal omnifunc=fish#Complete
 
 " Use the 'man' wrapper function in fish to include fish's man pages.
 " Have to use a script for this; 'fish -c man' would make the the man page an
