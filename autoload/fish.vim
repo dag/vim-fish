@@ -1,24 +1,22 @@
 function! fish#Indent()
-    let l:lnum = prevnonblank(v:lnum - 1)
-    if l:lnum ==# 0
+    let l:prevlnum = prevnonblank(v:lnum - 1)
+    if l:prevlnum ==# 0
         return 0
     endif
-    let l:ind = 0
-    if getline(l:lnum) =~# '\v^\s*switch>'
-        let l:ind = &shiftwidth * 2
-    elseif getline(l:lnum) =~# '\v^\s*%(begin|if|else|while|for|function|case)>'
-        let l:ind = &shiftwidth
+    let l:indent = 0
+    let l:prevline = getline(l:prevlnum)
+    if l:prevline =~# '\v^\s*switch>'
+        let l:indent = &shiftwidth * 2
+    elseif l:prevline =~# '\v^\s*%(begin|if|else|while|for|function|case)>'
+        let l:indent = &shiftwidth
     endif
-    if getline(v:lnum) =~# '\v^\s*end>'
-        if l:ind ==# 0
-            return indent(v:lnum) - &shiftwidth
-        else
-            return indent(v:lnum) - l:ind
-        endif
-    elseif getline(v:lnum) =~# '\v^\s*%(case|else)>'
+    let l:line = getline(v:lnum)
+    if l:line =~# '\v^\s*end>'
+        return indent(v:lnum) - (l:indent ==# 0 ? &shiftwidth : l:indent)
+    elseif l:line =~# '\v^\s*%(case|else)>'
         return indent(v:lnum) - &shiftwidth
     endif
-    return indent(l:lnum) + l:ind
+    return indent(l:prevlnum) + l:indent
 endfunction
 
 function! fish#Complete(findstart, base)
