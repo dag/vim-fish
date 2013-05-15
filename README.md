@@ -12,6 +12,8 @@ Features aplenty
 * Filetype detection if you have `:filetype on`.
 * Automatic indentation based on keywords for control structures if you have
   `:filetype indent on`.
+* Automatic folds for everything that `end` terminates in fish if you have
+  `:filetype plugin on`.
 * Code formatting with `fish_indent` using the `gq` operator if you have
   `:filetype plugin on`.
 * Jumping to file in fish's function path that defines the function under the

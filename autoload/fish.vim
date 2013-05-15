@@ -19,6 +19,17 @@ function! fish#Indent()
     return indent(l:prevlnum) + l:indent
 endfunction
 
+function! fish#Fold()
+    let l:line = getline(v:lnum)
+    if l:line =~# '\v^\s*%(begin|if|while|for|function|switch)>'
+        return 'a1'
+    elseif l:line =~# '\v^\s*end>'
+        return 's1'
+    else
+        return '='
+    end
+endfunction
+
 function! fish#Complete(findstart, base)
     if a:findstart
         return getline('.') =~# '\v^\s*$' ? -1 : 0

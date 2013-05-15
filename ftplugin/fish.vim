@@ -1,5 +1,7 @@
 setlocal comments=:#
 setlocal commentstring=#%s
+setlocal foldexpr=fish#Fold()
+setlocal foldmethod=expr
 setlocal formatoptions+=ron1j
 setlocal formatoptions-=t
 setlocal formatprg=fish_indent
