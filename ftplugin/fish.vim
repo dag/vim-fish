@@ -1,12 +1,12 @@
 setlocal comments=:#
+setlocal commentstring=#%s
 setlocal formatoptions+=ron1j
 setlocal formatoptions-=t
-setlocal commentstring=#%s
-setlocal iskeyword=@,48-57,-,_,.,/
 setlocal formatprg=fish_indent
+setlocal include=\\v^\\s*\\.>
+setlocal iskeyword=@,48-57,-,_,.,/
 setlocal omnifunc=fish#Complete
 setlocal suffixesadd=.fish
-setlocal include=\\v^\\s*\\.>
 
 if executable('fish')
     for s:path in split(system("fish -c 'echo $fish_function_path'"))
