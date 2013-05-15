@@ -1,3 +1,6 @@
+setlocal comments=:#
+setlocal formatoptions+=ron1j
+setlocal formatoptions-=t
 setlocal commentstring=#%s
 setlocal iskeyword=@,48-57,-,_,.,/
 setlocal formatprg=fish_indent

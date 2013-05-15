@@ -24,6 +24,12 @@ Features aplenty
   on`.
 * Improved `funced` experience to instantly start typing commands in the
   function body if you have `:filetype on`.
+* Automatic formatting of comments if you have `:filetype plugin on`.
+  Optionally you can set `textwidth` to something non-zero to have comments
+  wrapped when they're too long, or even `formatoptions+=a` to have whole
+  paragraphs in comments reformatted on the fly.  This is either glorious or
+  obnoxious depending on whether your comments are prose or something that
+  needs careful formatting, such as code, so it's not set for you by default.
 
 A team player
 -------------
