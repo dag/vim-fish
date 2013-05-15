@@ -8,30 +8,42 @@ This is an addon for Vim providing support for editing [fish][] scripts.
 Features aplenty
 ----------------
 
-* Syntax highlighting if you have `:syntax enable`.
-* Filetype detection if you have `:filetype on`.
-* Automatic indentation based on keywords for control structures if you have
-  `:filetype indent on`.
-* Automatic folds for everything that `end` terminates in fish if you have
-  `:filetype plugin on`.
-* Code formatting with `fish_indent` using the `gq` operator if you have
-  `:filetype plugin on`.
+* Syntax highlighting and filetype detection, of course.
+* Automatic indentation based on keywords for control structures.
+* Automatic folds for everything that `end` terminates in fish.
+* Code formatting with `fish_indent` using the `gq` operator.
 * Jumping to file in fish's function path that defines the function under the
-  cursor using the `gf` command if you have `:filetype plugin on`.
-* Searching for definitions including sourced files using commands like `[i` if
-  you have `:filetype plugin on`.
-* Keyword lookup that includes pages for fish builtins using the `K` command if
-  you have `:filetype plugin on`.
-* Completions from fish using the `^X^O` command if you have `:filetype plugin
-  on`.
+  cursor using the `gf` command.
+* Searching for definitions including sourced files using commands like `[i`.
+* Keyword lookup that includes pages for fish builtins using the `K` command.
+* Completions from fish using the `^X^O` command.
 * Improved `funced` experience to instantly start typing commands in the
-  function body if you have `:filetype on`.
-* Automatic formatting of comments if you have `:filetype plugin on`.
-  Optionally you can set `textwidth` to something non-zero to have comments
-  wrapped when they're too long, or even `formatoptions+=a` to have whole
-  paragraphs in comments reformatted on the fly.  This is either glorious or
-  obnoxious depending on whether your comments are prose or something that
-  needs careful formatting, such as code, so it's not set for you by default.
+  function body.
+* Automatic formatting of comments.
+
+For everything above to work you need to have fish installed in `$PATH` and
+some Vim features turned on:
+
+```vim
+syntax enable
+filetype plugin indent on
+
+" Set this to have long lines wrap inside comments.
+set textwidth=79
+
+" Like above, but also format whole paragraphs inside comments live.
+" This is great for prose, but obnoxious if you're trying to type something
+" like code inside a comment.
+set formatoptions+=a
+
+" Use this if you want folds to start out closed, or set it to 1 if you want to
+" see the gist of top-level blocks (such as function definitions).
+set foldlevelstart=0
+
+" If you don't like every little thing folded, experiment with this setting to
+" only fold larger blocks.
+set foldminlines=5
+```
 
 A team player
 -------------
@@ -71,4 +83,4 @@ Best do it somewhere at the top, before any addon code is loaded and executed.
 Note that this also affects what `:sh[ell]` launches, so if you care about that
 you might want to set it to your second best shell instead.  If you use Vim in
 the terminal you could also train yourself to use `:st[op]` or CTRL-Z instead
-and use `fg` in fish to get back to Vim.
+and then `fg` in fish to get back to Vim.
