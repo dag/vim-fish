@@ -5,13 +5,15 @@ setlocal formatoptions-=t
 setlocal formatprg=fish_indent
 setlocal include=\\v^\\s*\\.>
 setlocal iskeyword=@,48-57,-,_,.,/
-setlocal omnifunc=fish#Complete
 setlocal suffixesadd=.fish
 
 if executable('fish')
+    setlocal omnifunc=fish#Complete
     for s:path in split(system("fish -c 'echo $fish_function_path'"))
         execute 'setlocal path+='.s:path
     endfor
+else
+    setlocal omnifunc=syntaxcomplete#Complete
 endif
 
 " Use the 'man' wrapper function in fish to include fish's man pages.
