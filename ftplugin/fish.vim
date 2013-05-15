@@ -2,6 +2,14 @@ setlocal commentstring=#%s
 setlocal iskeyword=@,48-57,-,_,.,/
 setlocal formatprg=fish_indent
 setlocal omnifunc=fish#Complete
+setlocal suffixesadd=.fish
+setlocal include=\\v^\\s*\\.>
+
+if executable('fish')
+    for s:path in split(system("fish -c 'echo $fish_function_path'"))
+        execute 'setlocal path+='.s:path
+    endfor
+endif
 
 " Use the 'man' wrapper function in fish to include fish's man pages.
 " Have to use a script for this; 'fish -c man' would make the the man page an

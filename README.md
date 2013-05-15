@@ -14,6 +14,10 @@ Features aplenty
   `:filetype indent on`.
 * Code formatting with `fish_indent` using the `gq` operator if you have
   `:filetype plugin on`.
+* Jumping to file in fish's function path that defines the function under the
+  cursor using the `gf` command if you have `:filetype plugin on`.
+* Searching for definitions including sourced files using commands like `[i` if
+  you have `:filetype plugin on`.
 * Keyword lookup that includes pages for fish builtins using the `K` command if
   you have `:filetype plugin on`.
 * Completions from fish using the `^X^O` command if you have `:filetype plugin
