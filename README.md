@@ -19,6 +19,7 @@ Features aplenty
 * Completions from fish using the `^X^O` command.
 * Improved `funced` experience to instantly start typing commands in the
   function body.
+* Mimics `funced` when manually creating new functions.
 * Automatic formatting of comments.
 
 For everything above to work you need to have fish installed in `$PATH` and
