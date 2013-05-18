@@ -5,7 +5,7 @@ end
 endsnippet
 
 snippet fun "Function definition" b
-function ${1:name}
+function ${1:`!v empty(expand('%')) ? 'name' : expand('%:t:r')`}
 	$2
 end
 endsnippet
