@@ -34,7 +34,7 @@ function! fish#Complete(findstart, base)
     if a:findstart
         return getline('.') =~# '\v^\s*$' ? -1 : 0
     else
-        if a:base ==# ''
+        if empty(a:base)
             return []
         endif
         let l:results = []
