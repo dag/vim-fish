@@ -17,16 +17,16 @@ syntax match fishStatement /\v;\s*\zs\k+>/
 syntax match fishCommandSub /\v\(\s*\zs\k+>/
 syntax region fishLineContinuation matchgroup=fishStatement start=/\v^\s*\zs\k+>/ skip=/\\$/ end=/$/ contains=fishSpecial,fishIdentifier,fishString,fishCharacter,fishStatement,fishCommandSub
 
-highlight! link fishKeyword Keyword
-highlight! link fishConditional Conditional
-highlight! link fishRepeat Repeat
-highlight! link fishLabel Label
-highlight! link fishComment Comment
-highlight! link fishSpecial Special
-highlight! link fishIdentifier Identifier
-highlight! link fishString String
-highlight! link fishCharacter Character
-highlight! link fishStatement Statement
-highlight! link fishCommandSub fishStatement
+highlight default link fishKeyword Keyword
+highlight default link fishConditional Conditional
+highlight default link fishRepeat Repeat
+highlight default link fishLabel Label
+highlight default link fishComment Comment
+highlight default link fishSpecial Special
+highlight default link fishIdentifier Identifier
+highlight default link fishString String
+highlight default link fishCharacter Character
+highlight default link fishStatement Statement
+highlight default link fishCommandSub fishStatement
 
 let b:current_syntax = 'fish'
