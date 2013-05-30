@@ -5,10 +5,13 @@ setlocal foldexpr=fish#Fold()
 setlocal foldmethod=expr
 setlocal formatoptions+=ron1j
 setlocal formatoptions-=t
-setlocal formatprg=fish_indent
 setlocal include=\\v^\\s*\\.>
 setlocal iskeyword=@,48-57,-,_,.,/
 setlocal suffixesadd+=.fish
+
+if executable('fish_indent')
+    setlocal formatexpr=fish#Format()
+endif
 
 if executable('fish')
     setlocal omnifunc=fish#Complete
