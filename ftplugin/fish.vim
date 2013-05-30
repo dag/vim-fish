@@ -8,7 +8,7 @@ setlocal formatoptions-=t
 setlocal formatprg=fish_indent
 setlocal include=\\v^\\s*\\.>
 setlocal iskeyword=@,48-57,-,_,.,/
-setlocal suffixesadd=.fish
+setlocal suffixesadd+=.fish
 
 if executable('fish')
     setlocal omnifunc=fish#Complete
