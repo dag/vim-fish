@@ -17,7 +17,10 @@ syntax region fishString start=/"/ skip=/\\"/ end=/"/ contains=fishIdentifier
 syntax match fishCharacter /\v\\[abefnrtv *?~%#(){}\[\]<>&;"']|\\[xX][0-9a-f]{1,2}|\\o[0-7]{1,2}|\\u[0-9a-f]{1,4}|\\U[0-9a-f]{1,8}|\\c[a-z]/
 syntax match fishStatement /\v;\s*\zs\k+>/
 syntax match fishCommandSub /\v\(\s*\zs\k+>/
-syntax region fishLineContinuation matchgroup=fishStatement start=/\v^\s*\zs\k+>/ skip=/\\$/ end=/$/ contains=fishSpecial,fishIdentifier,fishString,fishCharacter,fishStatement,fishCommandSub
+
+syntax region fishLineContinuation matchgroup=fishStatement
+            \ start='\v^\s*\zs\k+>' skip='\\$' end='$'
+            \ contains=fishSpecial,fishIdentifier,fishString,fishCharacter,fishStatement,fishCommandSub
 
 highlight default link fishKeyword Keyword
 highlight default link fishConditional Conditional
