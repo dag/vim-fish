@@ -21,7 +21,7 @@ autocmd BufRead,BufNewFile ~/.config/fish/fish_{read_,}history setfiletype yaml
 autocmd BufRead,BufNewFile ~/.config/fish/fishd.* setlocal readonly
 
 " Mimic `funced` when manually creating functions.
-autocmd BufNewFile ~/.config/fish/*.fish
+autocmd BufNewFile ~/.config/fish/functions/*.fish
             \ call append(0, ['function '.expand('%:t:r'),
                              \repeat(' ', &shiftwidth),
                              \'end']) |
