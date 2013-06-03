@@ -1,3 +1,4 @@
+autocmd BufRead,BufNewFile * if getline(1) =~# '\v^#!\f*/fish>' | setlocal filetype=fish | endif
 autocmd BufRead,BufNewFile *.fish setfiletype fish
 autocmd BufRead fish_funced_*_*.fish ?\C^end\>?-1 | if getline('.') ==# '' | execute "normal! i\<C-t>" | endif | startinsert!
 autocmd BufRead,BufNewFile ~/.config/fish/fish_{read_,}history setfiletype yaml
