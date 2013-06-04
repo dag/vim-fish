@@ -17,6 +17,7 @@ Features aplenty
 * Searching for definitions including sourced files using commands like `[i`.
 * Keyword lookup that includes pages for fish builtins using the `K` command.
 * Completions from fish using the `^X^O` command.
+* Syntax checking with quickfix using the `:make` command.
 * Improved `funced` experience to instantly start typing commands in the
   function body.
 * Mimics `funced` when manually creating new functions.
@@ -28,6 +29,9 @@ some Vim features turned on:
 ```vim
 syntax enable
 filetype plugin indent on
+
+" Set up :make to use fish for syntax checking.
+compiler! fish
 
 " Set this to have long lines wrap inside comments.
 set textwidth=79

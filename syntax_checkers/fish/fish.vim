@@ -11,8 +11,8 @@ function! SyntaxCheckers_fish_fish_GetLocList()
     let l:makeprg = syntastic#makeprg#build({'exe': 'fish',
                                             \'args': '--no-execute',
                                             \'subchecker': 'fish'})
-    let l:errorformat = '%Afish: %m,%-Z%f (line %l):%s'
-    return SyntasticMake({'makeprg': l:makeprg, 'errorformat': l:errorformat})
+    return SyntasticMake({'makeprg': l:makeprg,
+                         \'errorformat': fish#errorformat()})
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({'filetype': 'fish',
