@@ -20,7 +20,7 @@ function! fish#Indent()
 endfunction
 
 function! fish#Format()
-    if !empty(v:char)
+    if mode() =~# '\v^%(i|R)$'
         return 1
     else
         let l:command = v:lnum.','.(v:lnum+v:count-1).'!fish_indent'
