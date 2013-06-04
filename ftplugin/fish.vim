@@ -7,7 +7,7 @@ setlocal formatoptions+=ron1j
 setlocal formatoptions-=t
 setlocal include=\\v^\\s*\\.>
 setlocal iskeyword=@,48-57,-,_,.,/
-setlocal suffixesadd+=.fish
+setlocal suffixesadd^=.fish
 
 if executable('fish_indent')
     setlocal formatexpr=fish#Format()
