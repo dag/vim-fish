@@ -45,6 +45,9 @@ set formatoptions+=a
 " see the gist of top-level blocks (such as function definitions).
 set foldlevelstart=0
 
+" Enable folding of block structures in fish.
+set foldmethod=expr
+
 " If you don't like every little thing folded, experiment with this setting to
 " only fold larger blocks.
 set foldminlines=5

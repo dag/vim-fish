@@ -2,7 +2,6 @@ setlocal comments=:#
 setlocal commentstring=#%s
 setlocal define=\\v^\\s*function>
 setlocal foldexpr=fish#Fold()
-setlocal foldmethod=expr
 setlocal formatoptions+=ron1j
 setlocal formatoptions-=t
 setlocal include=\\v^\\s*\\.>
