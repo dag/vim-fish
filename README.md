@@ -24,34 +24,32 @@ Features aplenty
 * Automatic formatting of comments.
 
 For everything above to work you need to have fish installed in `$PATH` and
-some Vim features turned on:
+some Vim features turned on.  First, tell Vim to use the syntax and filetype
+functionality, normally in your `~/.vimrc`:
 
 ```vim
 syntax enable
 filetype plugin indent on
+```
 
+Next, set some options for the `fish` filetype.  You can do this either by
+prefixing each line with `autocmd FileType fish`, or by putting them in your
+own `~/.vim/ftplugin/fish.vim` file:
+
+```vim
 " Set up :make to use fish for syntax checking.
-compiler! fish
+compiler fish
 
 " Set this to have long lines wrap inside comments.
-set textwidth=79
-
-" Like above, but also format whole paragraphs inside comments live.
-" This is great for prose, but obnoxious if you're trying to type something
-" like code inside a comment.
-set formatoptions+=a
-
-" Use this if you want folds to start out closed, or set it to 1 if you want to
-" see the gist of top-level blocks (such as function definitions).
-set foldlevelstart=0
+setlocal textwidth=79
 
 " Enable folding of block structures in fish.
-set foldmethod=expr
-
-" If you don't like every little thing folded, experiment with this setting to
-" only fold larger blocks.
-set foldminlines=5
+setlocal foldmethod=expr
 ```
+
+To make the folds more pleasant to work with you might also want to tweak
+settings like `foldlevelstart` and `foldminlines`, which you could do either
+globally in your `~/.vimrc` or locally as described above.
 
 A team player
 -------------
