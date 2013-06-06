@@ -62,5 +62,5 @@ function! fish#Complete(findstart, base)
 endfunction
 
 function! fish#errorformat()
-    return '%Afish: %m,%-Z%f (line %l):%s'
+    return '%Afish: %m,%-G%*\\ ^,%-Z%f (line %l):%s'
 endfunction
