@@ -18,8 +18,8 @@ Features aplenty
 * Keyword lookup that includes pages for fish builtins using the `K` command.
 * Completions from fish using the `^X^O` command.
 * Syntax checking with quickfix using the `:make` command.
-* Improved `funced` experience to instantly start typing commands in the
-  function body.
+* Improved `funced` experience using commands like `S` to instantly start
+  typing commands in the function body.
 * Mimics `funced` when manually creating new functions.
 * Automatic formatting of comments.
 
