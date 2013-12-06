@@ -9,6 +9,8 @@ syntax keyword fishConditional if else switch
 syntax keyword fishRepeat while for
 syntax keyword fishLabel case
 
+syntax match fishTests /\v<%(contains|test|count|not)>/ nextgroup=fishStatement,fishSpecial skipwhite
+
 syntax match fishComment /#.*/
 syntax match fishSpecial /\\$/
 syntax match fishIdentifier /\$[[:alnum:]_]\+/
@@ -29,6 +31,7 @@ highlight default link fishLabel Label
 highlight default link fishComment Comment
 highlight default link fishSpecial Special
 highlight default link fishIdentifier Identifier
+highlight default link fishTests Identifier
 highlight default link fishString String
 highlight default link fishCharacter Character
 highlight default link fishStatement Statement
