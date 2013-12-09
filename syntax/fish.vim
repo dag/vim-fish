@@ -6,7 +6,7 @@ syntax case match
 
 syntax keyword fishKeyword begin function end
 syntax keyword fishConditional if else switch
-syntax keyword fishRepeat while for
+syntax keyword fishRepeat while for in
 syntax keyword fishLabel case
 
 syntax match fishComment /#.*/
