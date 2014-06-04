@@ -41,7 +41,7 @@ syntax match fishVarDeref "\$\+\w\+" " NB: $$foo is allowed: multiple deref
 syntax region fishVarDeref start="\$\+\w\+\[" skip=/\\$/ end="]" contains=fishSubst,fishVarDeref
 syntax region fishString matchgroup=fishOperator start=/'/ skip=/\\'/ end=/'/ contains=fishSpecial
 syntax region fishString matchgroup=fishOperator start=/"/ skip=/\\"/ end=/"/ contains=fishVarDeref,fishSpecial,fishStringError
-syntax match fishNumber "[-+]\=\d\+"
+syntax match fishNumber "\<[-+]\=\d\+\>"
 syntax cluster fishValues contains=fishVarDeref,fishString,fishNumber
 
 syntax region fishTest matchgroup=fishOperator start="\[" skip="\\$" end="\]" contains=@fishTestContents
