@@ -1,3 +1,11 @@
+if exists('b:did_ftplugin')
+    finish
+end
+let b:did_ftplugin = 1
+
+let s:save_cpo = &cpo
+set cpo&vim
+
 setlocal comments=:#
 setlocal commentstring=#%s
 setlocal define=\\v^\\s*function>
@@ -31,9 +39,20 @@ endif
 " argument to fish instead of man.
 execute 'setlocal keywordprg=fish\ '.fnameescape(expand('<sfile>:p:h:h').'/bin/man.fish')
 
-let b:match_words =
-            \ escape('<%(begin|function|if|switch|while|for)>:<end>', '<>%|)')
+let b:match_words = escape(
+            \'<%(begin|function|%(else\s\+)\@<!if|switch|while|for)>:<else\s\+if>:<else>:<end>'
+            \, '<>%|)')
 
 let b:endwise_addition = 'end'
 let b:endwise_words = 'begin,function,if,switch,while,for'
 let b:endwise_syngroups = 'fishKeyword,fishConditional,fishRepeat'
+
+let b:undo_ftplugin = "
+            \ setlocal comments< commentstring< define< foldexpr< formatoptions<
+            \|setlocal include< iskeyword< suffixesadd<
+            \|setlocal formatexpr< omnifunc< path< keywordprg<
+            \|unlet! b:match_words b:endwise_addition b:endwise_words b:endwise_syngroups
+            \"
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
