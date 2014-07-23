@@ -4,7 +4,8 @@ endif
 
 syntax case match
 
-syntax keyword fishKeyword begin function end not set_color
+syntax keyword fishKeyword begin function end return not set_color contains
+syntax keyword fishKeywordError do done then fi export local
 syntax keyword fishKeyword alias cd contains_seq delete-or-exit dirh
          \ dirs down-or-search eval fish_config fish_default_key_bindings
          \ fish_indent fish_prompt fish_update_completions funced funcsave
@@ -13,7 +14,7 @@ syntax keyword fishKeyword alias cd contains_seq delete-or-exit dirh
          \ prompt_pwd psub pushd seq setenv sgrep trap type umask
          \ up-or-search vared
 
-syntax keyword fishConditional if else switch
+syntax keyword fishConditional if else switch or and
 syntax keyword fishRepeat while for in
 syntax keyword fishLabel case
 
@@ -21,7 +22,7 @@ syntax match fishOperator "[&;*?]"
 
 syntax region fishSubst matchgroup=fishOperator start="(" skip="\\$" end=")" contains=TOP
 syntax region fishBrace matchgroup=fishOperator start="{" skip="\\$" end="}" contains=TOP
-syntax match fishRedirect "\d\=\(>>\?\|<\|^^\?\)\(&\(-\|\d\)\)\="
+syntax match fishRedirect "\d\=\(>>\?\|<\|\^\^\?\)\(&\(-\|\d\)\)\="
 syntax match fishRedirect "\(\d>\)\=|"
 
 syntax match fishComment "#.*$" contains=fishTodo
@@ -32,11 +33,15 @@ syntax match fishEscape "\\[{}[\]()&;| *?~%#<>^\"']" "these are not escaped in s
 syntax match fishNumEscape "\\\(\d\d\d\|[xX]\x\x\|u\x\x\x\x\(\x\x\x\x\)\?\|c\a\)"
 syntax cluster fishEscapeSeqs contains=fishSpecial,fishEscape,fishNumEscape
 
-syntax match fishSet "set\s\+" nextgroup=fishSetOpt,fishIdentifier
-syntax match fishSetOpt contained "-[eglLnquUx]\s\+" nextgroup=fishIdentifier
-syntax match fishSetOpt contained "--\(local\|global\|universal\|names\|\(un\)\=export\|erase\|query\|long\)\s\+" nextgroup=fishIdentifier
+syntax match fishSet "\<set\s\+" nextgroup=fishSetOpt,fishIdentifier
+syntax match fishSetOpt contained "-[eglLnquUx]\+\s\+" nextgroup=fishSetOpt,fishIdentifier
+syntax match fishSetOpt contained "--\(local\|global\|universal\|names\|\(un\)\=export\|erase\|query\|long\)\s\+" nextgroup=fishSetOpt,fishIdentifier
 syntax match fishIdentifier contained "\w\+"
 
+syntax match fishVarDerefError "@" " array dereference op.
+syntax match fishVarDerefError "\$[-#@*$?!]" " special variables
+syntax region fishVarDerefError start="\${" end="}" " safe dereferencing
+syntax region fishVarDerefError start="\$(" end=")" " var substitution
 syntax match fishVarDeref "\$\+\w\+" " NB: $$foo is allowed: multiple deref
 syntax region fishVarDeref start="\$\+\w\+\[" skip=/\\$/ end="]" contains=fishSubst,fishVarDeref
 syntax region fishString matchgroup=fishOperator start=/'/ skip=/\\'/ end=/'/ contains=fishSpecial
@@ -45,21 +50,16 @@ syntax match fishNumber "\<[-+]\=\d\+\>"
 syntax cluster fishValues contains=fishVarDeref,fishString,fishNumber
 
 syntax region fishTest matchgroup=fishOperator start="\[" skip="\\$" end="\]" contains=@fishTestContents
+syntax region fishTest matchgroup=fishKeyword start="test" end="\($\|\ze\s*#\)" contains=@fishTestContents
 syntax match fishTestOp contained "-[a-gGhkLnoOprsStuwxz]"
 syntax match fishTestOp contained "-\(eq\|ge\|gt\|le\|lt\|ne\|ef\|nt\|ot\)"
 syntax match fishTestOp contained "\s\zs\(!=\|!\|=\)\ze\s"
-syntax match fishTestError contained "=="
 syntax region fishTestMatched contained matchgroup=fishTestOp start="(" skip="\\$" end=")" contains=@fishTestContents
-syntax cluster fishTestContents contains=fishTestOp,fishTestMatched,fishTestError,
-         \ @fishEscapeSeqs,@fishValues
+syntax cluster fishTestContents contains=fishTestOp,fishTestMatched,@fishError,@fishEscapeSeqs,@fishValues
+syntax match fishOpError "\(==\|&&\|||\|!!\|=\|\[\[\|]]\)" "syntax
 
 " Some sequences used in Bourne-like shells, but not fish
-syntax match fishVarDerefError "@" " array dereference op.
-syntax keyword fishError do done then fi export local " keywords
-syntax match fishError "\(&&\|||\|!!\|=\|\[\[\|]]\)" "syntax
-syntax match fishStringError "\$[-#@*$?!]" " special variables
-syntax region fishStringError start="\${" end="}" " safe dereferencing
-syntax region fishStringError start="\$(" end=")" " var substitution
+syntax cluster fishError contains=fishKeywordError,fishOpError,fishVarDerefError,fishStringError
 
 highlight default link fishKeyword Keyword
 highlight default link fishConditional Conditional
