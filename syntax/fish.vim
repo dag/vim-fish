@@ -12,7 +12,7 @@ syntax keyword fishKeyword contained
             \ fish_default_key_bindings grep la ll ls man nextd-or-forward-word
             \ N_ prevd-or-backward-word prompt_pwd seq setenv sgrep up-or-search
 syntax keyword fishKeyword contained
-            \ alias begin bg bind block break breakpoint builtin cd
+            \ abbr alias begin bg bind block break breakpoint builtin cd
             \ commandline complete \contains continue count dirh dirs echo emit
             \ end eval exec exit fg fish fish_config fish_indent fish_pager
             \ fish_prompt fish_right_prompt fish_update_completions fishd funced
