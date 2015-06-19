@@ -113,6 +113,8 @@ function! fish#Format()
         let l:command = v:lnum.','.(v:lnum+v:count-1).'!fish_indent'
         echo l:command
         execute l:command
+        " Fix indentation and replace tabs with spaces if necessary.
+        normal! '[=']
     endif
 endfunction
 
