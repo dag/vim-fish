@@ -2,6 +2,9 @@ if exists('b:current_syntax')
     finish
 endif
 
+syntax sync clear
+syntax sync fromstart
+
 syntax case match
 
 syntax keyword fishKeyword begin function end
