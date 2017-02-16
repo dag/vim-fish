@@ -15,9 +15,12 @@ autocmd BufRead,BufNewFile ~/.config/fish/fish_{read_,}history setfiletype yaml
 " Universal variable storages should not be hand edited.
 autocmd BufRead,BufNewFile ~/.config/fish/fishd.* setlocal readonly
 
+function! s:funced() abort
+	call append(0, ['function '.expand('%:t:r'),
+				\'',
+				\'end'])
+	normal! dd2G
+endfunction
+
 " Mimic `funced` when manually creating functions.
-autocmd BufNewFile ~/.config/fish/functions/*.fish
-            \ call append(0, ['function '.expand('%:t:r'),
-                             \'',
-                             \'end']) |
-            \ 2
+autocmd BufNewFile ~/.config/fish/functions/*.fish call s:funced()
