@@ -11,7 +11,8 @@ Features aplenty
 * Syntax highlighting and filetype detection, of course.
 * Automatic indentation based on keywords for control structures.
 * Automatic folds for everything that `end` terminates in fish.
-* Code formatting with `fish_indent` using the `gq` operator.
+* Code formatting with `fish_indent` using the `gq` operator as well as with a
+  command `:FishIndent` that keeps your cursor position
 * Jumping to file in fish's function path that defines the function under the
   cursor using the `gf` command.
 * Searching for definitions including sourced files using commands like `[i`.
