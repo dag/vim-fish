@@ -7,6 +7,12 @@ setlocal formatoptions-=t
 setlocal include=\\v^\\s*\\.>
 setlocal iskeyword=@,48-57,-,_,.,/
 setlocal suffixesadd^=.fish
+" show existing tab with 4 spaces width
+setlocal tabstop=4
+" when indenting with '>', use 4 spaces width
+setlocal shiftwidth=4
+" On pressing tab, insert 4 spaces
+setlocal expandtab
 
 " Use the 'j' format option when available.
 if v:version ># 703 || v:version ==# 703 && has('patch541')
