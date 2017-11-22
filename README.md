@@ -54,7 +54,7 @@ globally in your `~/.vimrc` or locally as described above.
 A team player
 -------------
 
-*vim-fish* ships with:
+*vim-fish* ships with support for:
 
 * Code snippets for [UltiSnips][]
 * A syntax checker for [Syntastic][]
