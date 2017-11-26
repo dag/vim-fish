@@ -31,8 +31,16 @@ endif
 " argument to fish instead of man.
 execute 'setlocal keywordprg=fish\ '.fnameescape(expand('<sfile>:p:h:h').'/bin/man.fish')
 
+let b:match_ignorecase = 0
+if has('patch-7.3.1037')
+    let s:if = '\%(else\s\+\)\@15<!if'
+else
+    let s:if = '\%(else\s\+\)\@<!if'
+endif
+
 let b:match_words =
-            \ escape('<%(begin|function|if|switch|while|for)>:<end>', '<>%|)')
+            \ '\<\%(begin\|function\|'.s:if.'\|switch\|while\|for\)\>'
+            \.':\<\%(else\%(\s*if\)\?\|case\)\>:\<end\>'
 
 let b:endwise_addition = 'end'
 let b:endwise_words = 'begin,function,if,switch,while,for'
