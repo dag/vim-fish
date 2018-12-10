@@ -1,3 +1,5 @@
+autocmd!
+
 autocmd BufRead,BufNewFile *.fish setfiletype fish
 
 " Detect fish scripts by the shebang line.
