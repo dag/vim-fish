@@ -13,7 +13,7 @@ function! fish#Indent()
     endif
     let l:line = getline(v:lnum)
     if l:line =~# '\v^\s*end>'
-        return indent(v:lnum) - (l:indent ==# 0 ? l:shiftwidth : l:indent)
+        return indent(l:prevlnum) - (l:indent ==# 0 ? l:shiftwidth : l:indent)
     elseif l:line =~# '\v^\s*%(case|else)>'
         return indent(v:lnum) - l:shiftwidth
     endif
