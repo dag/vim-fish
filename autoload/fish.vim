@@ -15,7 +15,7 @@ function! fish#Indent()
     if l:line =~# '\v^\s*end>'
         return indent(l:prevlnum) - (l:indent ==# 0 ? l:shiftwidth : l:indent)
     elseif l:line =~# '\v^\s*%(case|else)>'
-        return indent(v:lnum) - l:shiftwidth
+        return indent(l:prevlnum) - l:shiftwidth
     endif
     return indent(l:prevlnum) + l:indent
 endfunction
