@@ -6,8 +6,12 @@ let loaded_fish = 1
 " Universal variable storages should not be hand edited.
 autocmd BufRead,BufNewFile ~/.config/fish/fishd.* setlocal readonly
 
-" Move cursor to first empty line when using funced.
-autocmd BufRead fish_funced.* exec "normal! gg=G" | call search('^\s*\zs$')
+" When using funced:
+" - Reindent (because funced adds a tab on the first empty line and the user may
+"   have set expandtab).
+" - Move the cursor to the first empty line.
+autocmd BufRead fish_funced.*
+            \ exe 'normal! gg=G' | call search('^\s*\zs$')
 
 " Mimic `funced` when manually creating functions.
 autocmd BufNewFile ~/.config/fish/functions/*.fish
