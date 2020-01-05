@@ -17,7 +17,4 @@ autocmd BufRead,BufNewFile ~/.config/fish/fishd.* setlocal readonly
 
 " Mimic `funced` when manually creating functions.
 autocmd BufNewFile ~/.config/fish/functions/*.fish
-            \ call append(0, ['function '.expand('%:t:r'),
-                             \'',
-                             \'end']) |
-            \ 2
+            \ call setline(1, ['function '.expand('%:t:r'), '', 'end']) | 2
