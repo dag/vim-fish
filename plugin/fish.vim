@@ -11,9 +11,9 @@ autocmd BufRead,BufNewFile ~/.config/fish/fishd.*,~/.config/fish/fish_variables
 " - Reindent (because funced adds a tab on the first empty line and the user may
 "   have set expandtab).
 " - Move the cursor to the first empty line.
-autocmd BufRead fish_funced.*
-            \ exe retab | call search('^\s*\zs$')
+autocmd BufRead fish_funced.*,fish_funced_*_*.fish,/tmp/fish.*/*.fish
+            \ retab | call search('^\s*\zs$')
 
 " Mimic `funced` when manually creating functions.
-autocmd BufRead fish_funced.*,fish_funced_*_*.fish,/tmp/fish.*/*.fish
+autocmd BufNewFile ~/.config/fish/functions/*.fish
             \ call setline(1, ['function '.expand('%:t:r'), '', 'end']) | 2
