@@ -52,7 +52,7 @@ let b:match_words = escape(
 
 let b:endwise_addition = 'end'
 let b:endwise_words = 'begin,function,if,switch,while,for'
-let b:endwise_syngroups = 'fishKeyword,fishConditional,fishRepeat'
+let b:endwise_syngroups = 'fishBlock,fishFunction,fishConditional,fishRepeat'
 
 let b:undo_ftplugin = "
             \ setlocal comments< commentstring< define< foldexpr< formatoptions<

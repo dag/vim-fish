@@ -5,34 +5,55 @@ endif
 syntax case match
 syntax iskeyword @,48-57,-,_,.,/
 
-syntax keyword fishKeyword begin function end
+syntax keyword fishBlock begin end
 syntax keyword fishConditional if else switch
 syntax keyword fishRepeat while for in
 syntax keyword fishLabel case
+syntax keyword fishControl return break continue exit
+syntax keyword fishOperator and or not
+syntax keyword fishBoolean true false
 
+syntax keyword fishFunction function nextgroup=fishFunctionName skipwhite
+syntax match fishFunctionName /\k\+/ contained
+
+" http://fishshell.com/docs/current/commands.html
+syntax keyword fishCommand abbr alias argparse bg bind block breakpoint
+  \ builtin cd cdh command commandline complete count dirh dirs disown echo
+  \ emit eval exec fg fish funced funcsave functions help history isatty jobs
+  \ math nextd open popd prevd printf prompt_pwd psub pushd pwd random read
+  \ realpath set set_color source status suspend test time trap type
+  \ ulimit umask vared wait contains[]
+syntax match fishCommand /\v<string(\s+(collect|escape|join|join0|length|lower|match|repeat|replace|split|split0|sub|trim|unescape|upper))=>/
+
+syntax match fishOperator '\V=\|*\|%\|&\||\|<\|>\|!\|+\|-'
 syntax match fishComment /#.*/
-syntax match fishSpecial /\\$/
-syntax match fishIdentifier /\$[[:alnum:]_]\+/
-syntax region fishString start=/'/ skip=/\v(\\{2})|(\\)'/ end=/'/
-syntax region fishString start=/"/ skip=/\v(\\{2})|(\\)"/ end=/"/ contains=fishIdentifier
-syntax match fishCharacter /\v\\[abefnrtv *?~%#(){}\[\]<>&;"']|\\[xX][0-9a-f]{1,2}|\\o[0-7]{1,2}|\\u[0-9a-f]{1,4}|\\U[0-9a-f]{1,8}|\\c[a-z]/
-syntax match fishStatement /\v;\s*\zs\k+>/
-syntax match fishCommandSub /\v\(\s*\zs\k+>/
+syntax match fishSpecial /\\\|;\|(\|)/
+syntax match fishArgument /\v(<-+|\s\zs\+)\k*>/
+syntax match fishNumber /\<\d\+\>#\=/
+syntax match fishNumber /\<-\=\.\=\d\+\>#\=/
 
-syntax region fishLineContinuation matchgroup=fishStatement
-            \ start='\v^\s*\zs\k+>' skip='\\$' end='$'
-            \ contains=fishSpecial,fishIdentifier,fishString,fishCharacter,fishStatement,fishCommandSub,fishComment
+syntax match fishDeref /\$[[:alnum:]_]\+/
+syntax region fishString start=/'/ skip=/\v(\\{2})|(\\)'/ end=/'/
+syntax region fishString start=/"/ skip=/\v(\\{2})|(\\)"/ end=/"/ contains=fishDeref,fishCharacter
+syntax match fishCharacter /\v\\[abefnrtv *?~%#(){}\[\]<>&;"']|\\[xX][0-9a-f]{1,2}|\\o[0-7]{1,2}|\\u[0-9a-f]{1,4}|\\U[0-9a-f]{1,8}|\\c[a-z]|\\e[a-zA-Z0-9]/
 
 highlight default link fishKeyword Keyword
+highlight default link fishBlock fishKeyword
+highlight default link fishFunction fishKeyword
 highlight default link fishConditional Conditional
 highlight default link fishRepeat Repeat
 highlight default link fishLabel Label
+highlight default link fishCommand Keyword
+highlight default link fishFunctionName Function
 highlight default link fishComment Comment
+highlight default link fishOperator Operator
 highlight default link fishSpecial Special
-highlight default link fishIdentifier Identifier
+highlight default link fishDeref PreProc
 highlight default link fishString String
+highlight default link fishNumber Number
 highlight default link fishCharacter Character
-highlight default link fishStatement Statement
-highlight default link fishCommandSub fishStatement
+highlight default link fishArgument Constant
+highlight default link fishBoolean Boolean
+highlight default link fishControl Exception
 
 let b:current_syntax = 'fish'
