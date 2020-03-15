@@ -92,9 +92,9 @@ function! fish#Indent()
         " "case" following "switch", increase by one.
         let l:shift += 1
     endif
-    if l:line =~# '\v\s*end>' && s:IsSwitch(v:lnum)
-        " "end" ends switch block, decrease by one more so it matches
-        " the indentation of "switch".
+    if l:line =~# '\v\s*end>' && l:prevline !~# '\v<switch>' && s:IsSwitch(v:lnum)
+        " "end" ends switch block, but not immediately following "switch"
+        " decrease by one more so it matches the indentation of "switch".
         let l:shift -= 1
     endif
     if l:prevline =~# '\v^\s*%(if|while|for|else|switch|end)>.*<begin>'
