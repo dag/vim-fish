@@ -67,7 +67,7 @@ function! fish#Indent()
     let l:prevline = getline(l:prevlnum)
     let l:previndent = indent(l:prevlnum)
     if s:IsContinuedLine(v:lnum)
-        " It is customary to increment indentation of continued lines by three
+        " It is customary to increment indentation of continued lines by four
         " or a custom value defined by the user if available.
         let l:previndent = indent(v:lnum - 1)
         if s:IsContinuedLine(v:lnum - 1)
@@ -77,7 +77,7 @@ function! fish#Indent()
         elseif exists('g:indent_cont')
             return l:previndent + g:indent_cont
         else
-            return l:previndent + 3
+            return l:previndent + l:shiftwidth
         endif
     endif
     if l:prevline =~# '\v^\s*%(begin|if|else|while|for|function|case|switch)>'
