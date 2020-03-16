@@ -20,11 +20,14 @@ syntax match fishFunctionName /\k\+/ contained
 
 " http://fishshell.com/docs/current/commands.html
 syntax keyword fishCommand abbr alias argparse bg bind block breakpoint
-  \ builtin cd cdh command commandline complete count dirh dirs disown echo
-  \ emit eval exec fg fish funced funcsave functions help history isatty jobs
-  \ math nextd open popd prevd printf prompt_pwd psub pushd pwd random read
-  \ realpath set set_color source status suspend test time trap type
-  \ ulimit umask vared wait contains[]
+  \ builtin cd cdh command commandline complete contains[] count dirh dirs
+  \ disown echo emit eval exec fg fish fish_breakpoint_prompt fish_config
+  \ fish_git_prompt fish_hg_prompt fish_indent fish_key_reader
+  \ fish_mode_prompt fish_opt fish_prompt fish_right_prompt
+  \ fish_svn_prompt fish_update_completions fish_vcs_prompt funced funcsave
+  \ functions help history isatty jobs math nextd open popd prevd printf
+  \ prompt_pwd psub pushd pwd random read realpath set set_color source
+  \ status suspend test time trap type ulimit umask vared wait
 syntax match fishCommand /\v<string(\s+(collect|escape|join|join0|length|lower
   \ |match|repeat|replace|split|split0|sub|trim|unescape|upper))=>/
 
