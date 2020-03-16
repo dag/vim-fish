@@ -5,6 +5,21 @@ endif
 syntax case match
 syntax iskeyword @,48-57,-,_,.,/
 
+" https://en.wikipedia.org/wiki/List_of_Unix_commands
+syntax keyword fishUnixCommand admin alias ar asa at awk basename batch bc bg
+  \ cc c99 cal cat cd cflow chgrp chmod chown cksum cmp comm command compress
+  \ cp crontab csplit ctags cut cxref date dd delta df diff dirname du echo
+  \ ed env ex expand expr false fc fg file find fold fort77 fuser gencat get
+  \ getconf getopts grep hash head iconv id ipcrm ipcs jobs join kill lex
+  \ less link ln locale localedef logger logname lp ls m4 mailx make man mesg
+  \ mkdir mkfifo more mv newgrp nice nl nm nohup od paste patch pathchk pax
+  \ pr printf prs ps pwd qalter qdel qhold qmove qmsg qrerun qrls qselect
+  \ qsig qstat qsub read renice rm rmdel rmdir sact sccs sed sh sleep sort
+  \ split strings strip stty tabs tail talk tee test time touch tput tr true
+  \ tsort tty type ulimit umask unalias uname uncompress unexpand unget uniq
+  \ unlink uucp uudecode uuencode uustat uux val vi wait wc what who
+  \ write xargs yacc zcat
+
 syntax cluster fishKeyword contains=fishBlock,fishFunction,fishConditional,
   \ fishRepeat,fishLabel,fishControl,fishOperator,fishBoolean,fishCommand
 syntax keyword fishBlock begin end
@@ -14,9 +29,6 @@ syntax keyword fishLabel case
 syntax keyword fishControl return break continue exit
 syntax keyword fishOperator and or not
 syntax keyword fishBoolean true false
-
-syntax keyword fishFunction function nextgroup=fishFunctionName skipwhite
-syntax match fishFunctionName /\k\+/ contained
 
 " http://fishshell.com/docs/current/commands.html
 syntax keyword fishCommand abbr alias argparse bg bind block breakpoint
@@ -30,6 +42,9 @@ syntax keyword fishCommand abbr alias argparse bg bind block breakpoint
   \ status suspend test time trap type ulimit umask vared wait
 syntax match fishCommand /\v<string(\s+(collect|escape|join|join0|length|lower
   \ |match|repeat|replace|split|split0|sub|trim|unescape|upper))=>/
+
+syntax keyword fishFunction function nextgroup=fishFunctionName skipwhite
+syntax match fishFunctionName /\k\+/ contained
 
 syntax match fishOperator '[\[\]=*%&|<>!+-]'
 syntax match fishComment /#.*/
@@ -50,6 +65,7 @@ highlight default link fishConditional Conditional
 highlight default link fishRepeat Repeat
 highlight default link fishLabel Label
 highlight default link fishCommand Keyword
+highlight default link fishUnixCommand Keyword
 highlight default link fishFunctionName Function
 highlight default link fishComment Comment
 highlight default link fishOperator Operator
