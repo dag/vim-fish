@@ -5,6 +5,8 @@ endif
 syntax case match
 syntax iskeyword @,48-57,-,_,.,/
 
+syntax cluster fishKeyword contains=fishBlock,fishFunction,fishConditional,
+  \ fishRepeat,fishLabel,fishControl,fishOperator,fishBoolean,fishCommand
 syntax keyword fishBlock begin end
 syntax keyword fishConditional if else switch
 syntax keyword fishRepeat while for in
@@ -23,14 +25,15 @@ syntax keyword fishCommand abbr alias argparse bg bind block breakpoint
   \ math nextd open popd prevd printf prompt_pwd psub pushd pwd random read
   \ realpath set set_color source status suspend test time trap type
   \ ulimit umask vared wait contains[]
-syntax match fishCommand /\v<string(\s+(collect|escape|join|join0|length|lower|match|repeat|replace|split|split0|sub|trim|unescape|upper))=>/
+syntax match fishCommand /\v<string(\s+(collect|escape|join|join0|length|lower
+  \ |match|repeat|replace|split|split0|sub|trim|unescape|upper))=>/
 
-syntax match fishOperator '\V=\|*\|%\|&\||\|<\|>\|!\|+\|-'
+syntax match fishOperator '[\[\]=*%&|<>!+-]'
 syntax match fishComment /#.*/
-syntax match fishSpecial /\\\|;\|(\|)/
-syntax match fishArgument /\v(<-+|\s\zs\+)\k*>/
-syntax match fishNumber /\<\d\+\>#\=/
-syntax match fishNumber /\<-\=\.\=\d\+\>#\=/
+syntax match fishSpecial /[\();]/
+syntax match fishSpecial /\zs\$\ze\$/
+syntax match fishArgument /\v<[+-]+\k+>/
+syntax match fishNumber /\v<[+-]=(\d+\.)=\d+>/
 
 syntax match fishDeref /\$[[:alnum:]_]\+/
 syntax region fishString start=/'/ skip=/\v(\\{2})|(\\)'/ end=/'/
