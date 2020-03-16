@@ -50,7 +50,7 @@ syntax match fishOperator '[\[\]=*%&|<>!+-]'
 syntax match fishComment /#.*/
 syntax match fishSpecial /[\();]/
 syntax match fishSpecial /\zs\$\ze\$/
-syntax match fishArgument /\v<[+-]+\k+>/
+syntax match fishOption /\v<[+-]+\k+>/
 syntax match fishNumber /\v<[+-]=(\d+\.)=\d+>/
 
 syntax match fishDeref /\$[[:alnum:]_]\+/
@@ -74,7 +74,7 @@ highlight default link fishDeref PreProc
 highlight default link fishString String
 highlight default link fishNumber Number
 highlight default link fishCharacter Character
-highlight default link fishArgument Constant
+highlight default link fishOption Constant
 highlight default link fishBoolean Boolean
 highlight default link fishControl Exception
 
