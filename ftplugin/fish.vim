@@ -49,6 +49,7 @@ endif
 let b:match_words = escape(
             \'<%(begin|function|'.s:if.'|switch|while|for)>:<else\s\+if|case>:<else>:<end>'
             \, '<>%|)')
+let b:match_skip = 's:comment\|string\|deref'
 
 let b:endwise_addition = 'end'
 let b:endwise_words = 'begin,function,if,switch,while,for'
