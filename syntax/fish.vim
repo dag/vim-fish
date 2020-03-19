@@ -47,11 +47,6 @@ syntax keyword fishFunction function nextgroup=fishFunctionName skipwhite
 syntax match fishFunctionName '[^[:space:]/-][^[:space:]/]*' contained
 
 syntax match fishOperator '[\[\]=*~%&|<>!+-]'
-syntax match fishOperator '\.\.'
-syntax region fishOperator matchgroup=fishNumber
-  \ start=/\v<[+-]=(\d+\.)=\d+/ end=/\v[+-](\d+\.)=\d+>/
-syntax region fishOperator matchgroup=fishNumber
-  \ start=/\v<[+-]=(\d+\.)=\d+/ end=/\v(\d+\.)=\d+>/
 
 syntax match fishComment /#.*/
 syntax match fishSpecial /[\();]/
