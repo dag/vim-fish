@@ -17,3 +17,5 @@ autocmd BufRead fish_funced.*,fish_funced_*_*.fish,/tmp/fish.*/*.fish
 " Mimic `funced` when manually creating functions.
 autocmd BufNewFile ~/.config/fish/functions/*.fish
             \ call setline(1, ['function '.expand('%:t:r'), '', 'end']) | 2
+
+command! -nargs=? FishHelp call fish#Help(<q-args>)

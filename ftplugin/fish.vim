@@ -37,7 +37,8 @@ endif
 " Use the 'man' wrapper function in fish to include fish's man pages.
 " Have to use a script for this; 'fish -c man' would make the the man page an
 " argument to fish instead of man.
-execute 'setlocal keywordprg=fish\ '.fnameescape(expand('<sfile>:p:h:h').'/bin/man.fish')
+" execute 'setlocal keywordprg=fish\ '.fnameescape(expand('<sfile>:p:h:h').'/bin/man.fish')
+setlocal keywordprg=:FishHelp
 
 let b:match_ignorecase = 0
 if has('patch-7.3.1037')
