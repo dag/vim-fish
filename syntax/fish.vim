@@ -3,6 +3,7 @@ if exists('b:current_syntax')
 endif
 
 syntax case match
+syntax iskeyword @,48-57,-,_,.,/
 
 syntax keyword fishKeyword begin function end
 syntax keyword fishConditional if else switch
