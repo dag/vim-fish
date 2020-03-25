@@ -164,7 +164,7 @@ function! fish#Complete(findstart, base)
 endfunction
 
 function! fish#errorformat()
-    return '%A<%t> fish: %m,%Efish: %m,%E%f (line %l): %m,%-Z%p^,%E%f: %m,%Ein %m,%Z %#called on line %l of file %f,%Ein %m,%C%s,%-G%.%#'
+    return '%A<%t> fish: %m,%Efish: %m,%E%f (line %l): %m,%E%f (line %l):%.%#,%-Z%p^,%Ein %m,%Z	called on line %l of file %f,%Ein %m,%C%s,%-G%.%#'
 endfunction
 
 function! fish#Help(ref) abort
