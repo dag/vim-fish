@@ -44,18 +44,23 @@ syntax match fishCommand /\v<string(\s+(collect|escape|join|join0|length|lower
   \ |match|repeat|replace|split|split0|sub|trim|unescape|upper))=>/
 
 syntax keyword fishFunction function nextgroup=fishFunctionName skipwhite
-syntax match fishFunctionName '[^[:space:]/-][^[:space:]/]*' contained
+syntax match fishFunctionName '[^[:space:]/()-][^[:space:]/()]*' contained
+  \ contains=fishString,fishDeref
 
 syntax match fishOperator '[\[\]=*~%&|<>!+-]'
+syntax match fishOperator '\.\.'
 
 syntax match fishComment /#.*/
 syntax match fishSpecial /[\();]/
+syntax match fishSpecial /"/
 syntax match fishOption /\v<[+-][[:alnum:]-_]+>/
 syntax match fishNumber /\v<[+-]=(\d+\.)=\d+>/
 
-syntax match fishDeref /\$\+[[:alnum:]_]\+/
+syntax match fishDeref /\$\+[[:alnum:]_]\+/ nextgroup=fishDerefExtension
+syntax region fishDerefExtension matchgroup=fishOperator start=/\[/ end=/\]/ contains=fishDeref,fishNumber,fishOperator contained
+
 syntax region fishString start=/'/ skip=/\v(\\{2})|(\\)'/ end=/'/
-syntax region fishString start=/"/ skip=/\v(\\{2})|(\\)"/ end=/"/ contains=fishDeref,fishCharacter
+syntax region fishString start=/"/ skip=/\v(\\{2})|(\\)"/ end=/"/ contains=fishDeref,fishDerefExtension,fishCharacter
 syntax match fishCharacter /\v\\[abefnrtv *?~%#(){}\[\]<>&;"']|\\[xX][0-9a-f]{1,2}|\\o[0-7]{1,2}|\\u[0-9a-f]{1,4}|\\U[0-9a-f]{1,8}|\\c[a-z]|\\e[a-zA-Z0-9]/
 
 highlight default link fishKeyword Keyword
