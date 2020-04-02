@@ -59,8 +59,12 @@ syntax match fishNumber /\v<[+-]=(\d+\.)=\d+>/
 syntax match fishDeref /\$\+[[:alnum:]_]\+/ nextgroup=fishDerefExtension
 syntax region fishDerefExtension matchgroup=fishOperator start=/\[/ end=/\]/ contains=fishDeref,fishNumber,fishOperator contained
 
-syntax region fishString start=/'/ skip=/\v(\\{2})|(\\)'/ end=/'/
-syntax region fishString start=/"/ skip=/\v(\\{2})|(\\)"/ end=/"/ contains=fishDeref,fishDerefExtension,fishCharacter
+syntax match fishSingleQuoteEscape /\\[\\']/ contained
+syntax match fishDoubleQuoteEscape /\\[\\"$\n]/ contained
+syntax cluster fishStringEscape contains=fishSingleQuoteEscape,fishDoubleQuoteEscape
+
+syntax region fishString start=/'/ skip=/\v(\\{2})|(\\)'/ end=/'/ contains=fishSingleQuoteEscape
+syntax region fishString start=/"/ skip=/\v(\\{2})|(\\)"/ end=/"/ contains=fishDoubleQuoteEscape,fishDeref,fishDerefExtension,fishCharacter
 syntax match fishCharacter /\v\\[abefnrtv *?~%#(){}\[\]<>&;"']|\\[xX][0-9a-f]{1,2}|\\o[0-7]{1,2}|\\u[0-9a-f]{1,4}|\\U[0-9a-f]{1,8}|\\c[a-z]|\\e[a-zA-Z0-9]/
 
 highlight default link fishKeyword Keyword
@@ -77,6 +81,8 @@ highlight default link fishOperator Operator
 highlight default link fishSpecial Special
 highlight default link fishDeref PreProc
 highlight default link fishString String
+highlight default link fishSingleQuoteEscape Special
+highlight default link fishDoubleQuoteEscape Special
 highlight default link fishNumber Number
 highlight default link fishCharacter Character
 highlight default link fishOption Constant
