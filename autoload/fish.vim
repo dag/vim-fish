@@ -9,6 +9,11 @@ function! s:IsContinuedLine(lnum)
     return getline(a:lnum - 1) =~ '\v\\$'
 endfunction
 
+function! s:IsInSubstitution(lnum)
+    " Returns "true" if the given line is a continued line.
+    return getline(a:lnum - 1) =~ '\v\($'
+endfunction
+
 function! s:FindPrevLnum(lnum)
     " Starting on the given line, search backwards for a line that is not
     " empty, not part of a string and not a continued line.
@@ -79,6 +84,14 @@ function! fish#Indent()
         else
             return l:previndent + l:shiftwidth
         endif
+    endif
+    if l:prevline =~ '(\s*$'
+        " Inside a substitution
+        let l:shift += 1
+    endif
+    if l:line =~ '^\s*)'
+        " Outside a substitution
+        let l:shift -= 1
     endif
     if l:prevline =~# '\v^\s*%(begin|if|else|while|for|function|case|switch)>'
         " First line inside a block, increase by one.
