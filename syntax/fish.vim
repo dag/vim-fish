@@ -52,7 +52,7 @@ syntax match fishOperator '\.\.'
 
 syntax match fishComment /#.*/
 syntax match fishSpecial /[\();]/
-syntax match fishSpecial /"/
+syntax match fishSpecial /\\\$/
 syntax match fishOption /\v<[+-][[:alnum:]-_]+>/
 syntax match fishNumber /\v<[+-]=(\d+\.)=\d+>/
 
@@ -64,7 +64,7 @@ syntax match fishDoubleQuoteEscape /\\[\\"$\n]/ contained
 syntax cluster fishStringEscape contains=fishSingleQuoteEscape,fishDoubleQuoteEscape
 
 syntax region fishString start=/'/ skip=/\v(\\{2})|(\\)'/ end=/'/ contains=fishSingleQuoteEscape
-syntax region fishString start=/"/ skip=/\v(\\{2})|(\\)"/ end=/"/ contains=fishDoubleQuoteEscape,fishDeref,fishDerefExtension,fishCharacter
+syntax region fishString start=/"/ skip=/\v(\\{2})|(\\)"/ end=/"/ contains=fishDoubleQuoteEscape,fishDeref,fishDerefExtension
 syntax match fishCharacter /\v\\[0abefnrtv *?~%#(){}\[\]<>&;"']|\\[xX][0-9a-f]{1,2}|\\o[0-7]{1,2}|\\u[0-9a-f]{1,4}|\\U[0-9a-f]{1,8}|\\c[a-z]/
 syntax match fishCharacter /\v\\e[a-zA-Z0-9]/
 
