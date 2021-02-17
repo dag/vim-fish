@@ -1,1 +1,1 @@
-man $argv
+man $argv | col -bf
